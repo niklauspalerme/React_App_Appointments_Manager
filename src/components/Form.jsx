@@ -2,8 +2,8 @@
 /// Importaciones
 
 
-import React, { Fragment, useState } from 'react'
-
+import React, { Fragment, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 /// Componentes
@@ -22,6 +22,9 @@ const Form = () => {
         comments : ''
     })
 
+
+    const [error, setError] = useState(false)
+
     const {topic, name, date, hour, comments} = appointment;
 
     /////////////////////////////////
@@ -35,10 +38,35 @@ const Form = () => {
     }
 
 
+    const submitCita = e =>{
+
+        e.preventDefault();
+
+        ///// Validamos
+        if(topic.trim() === '' || name.trim() ==='' || date.trim()==='' || hour.trim()==='' || comments.trim()==='') {
+            setError(true);
+            return
+        }
+
+        ///// Eliminar el mensaje previo de erro si existe
+        setError(false);
+
+        ///// Asignamos un ID
+        appointment.id = uuidv4();
+
+
+    }
+
     return (  
        <Fragment>
            <h2>Create Appoinment</h2>
-           <form action="">
+
+            { error 
+                ? <p className='alerta-error'>Todos los campos son obligatorios</p>
+                : null 
+            }
+
+           <form onSubmit={submitCita}>
                <label>Name of the Topic</label>
                <input type="text" name='topic' placeholder='Write here...' className='u-full-width' onChange={actualizarState} value={topic}/>
 
