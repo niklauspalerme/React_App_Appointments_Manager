@@ -5,11 +5,12 @@
 import React, { Fragment, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
+
 //////////////////////////////////////////////////////////////////////////////////////////////
 /// Componentes
 
 
-const Form = () => {
+const Form = ({crearCita}) => {
 
     /////////////////////////////////
     //States
@@ -53,6 +54,18 @@ const Form = () => {
 
         ///// Asignamos un ID
         appointment.id = uuidv4();
+
+        ///// Creamos la cita
+        crearCita(appointment);
+
+        //Reiniciar el form
+        SetAppointment({
+            topic: '',
+            name:'',
+            date: '',
+            hour: '',
+            comments : ''
+        })
 
 
     }
