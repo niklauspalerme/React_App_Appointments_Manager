@@ -2,7 +2,7 @@
 /// Importaciones
 
 import { Fragment, useState} from "react";
-import Appoinment from "./components/Appointment";
+import Appointment from "./components/Appointment";
 import Form from "./components/Form";
 
 //////////////////////////////////////////////////////////////////////////////////////////////
@@ -14,17 +14,25 @@ function App() {
   ///// State
   const [citas, setCitas] = useState([]);  
 
-  ///// Función
+  ///// Funcines
 
   const crearCita = cita =>{
-
-    console.log('CreaerCita');
       setCitas([
         ...citas,
         cita
       ])
-
   }
+
+  const eliminarCita = id =>{
+    const newCitas = citas.filter (cita=> cita.id !== id);
+    setCitas(newCitas);
+  }
+
+  const titulo = citas.length !== 0 
+                  ? 'Managing your Appointments'
+                  : 'There is not appointment yet...'
+
+
 
   return (
     <Fragment>
@@ -38,10 +46,10 @@ function App() {
             />
           </div>
           <div className="one-half column">
-            <h2>Administra tu citas</h2>
+            <h2>{titulo}</h2>
             {
               citas.map(cita =>(
-                <Appoinment key={cita.id}cita={cita}/>
+                <Appointment key={cita.id} cita={cita} eliminarCita={eliminarCita}/>
               ))
 
             }

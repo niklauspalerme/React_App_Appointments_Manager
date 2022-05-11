@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Appoinment = ({cita}) => {
+const Appointment = ({cita,eliminarCita}) => {
 
     return (
         <div className='cita'>
@@ -9,8 +9,9 @@ const Appoinment = ({cita}) => {
             <p>Date:<span>{cita.date}</span></p>
             <p>Hour:<span>{cita.hour}</span></p>
             <p>Comments:<span>{cita.comments}</span></p>
+            <button className='button eliminar u-full-width' onClick={ () => eliminarCita(cita.id) }> Delete &times;</button>
         </div>
     )
 }
  
-export default Appoinment;
+export default Appointment;

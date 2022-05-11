@@ -72,7 +72,7 @@ const Form = ({crearCita}) => {
 
     return (  
        <Fragment>
-           <h2>Create Appoinment</h2>
+           <h2>Create an Appointment</h2>
 
             { error 
                 ? <p className='alerta-error'>Todos los campos son obligatorios</p>
