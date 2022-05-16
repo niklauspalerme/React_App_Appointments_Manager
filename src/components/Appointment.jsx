@@ -1,4 +1,14 @@
+//////////////////////////////////////////////////////////////////////////////////////////////
+/// Importaciones
+
+
 import React from 'react'
+import PropTypes from 'prop-types';
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+/// Componentes
+
 
 const Appointment = ({cita,eliminarCita}) => {
 
@@ -13,5 +23,15 @@ const Appointment = ({cita,eliminarCita}) => {
         </div>
     )
 }
- 
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+/// PropTypes y Exports
+
+
+Appointment.propTypes={
+    cita: PropTypes.object.isRequired,
+    eliminarCita: PropTypes.func.isRequired
+  }
+
 export default Appointment;

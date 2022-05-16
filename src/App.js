@@ -1,9 +1,11 @@
 //////////////////////////////////////////////////////////////////////////////////////////////
 /// Importaciones
 
-import { Fragment, useState} from "react";
+
+import { Fragment, useState, useEffect} from "react";
 import Appointment from "./components/Appointment";
 import Form from "./components/Form";
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 /// Componentes
@@ -11,10 +13,27 @@ import Form from "./components/Form";
 
 function App() {
 
+
+  ///// Variables
+
+  let citasIniciales = JSON.parse(localStorage.getItem('citas'));
+  if (!citasIniciales){
+    citasIniciales= [];
+  }
+
   ///// State
   const [citas, setCitas] = useState([]);  
 
-  ///// Funcines
+  ///// Use Effect
+  useEffect ( () =>{
+    if (citasIniciales){
+      localStorage.setItem('citas', JSON.stringify(citas));
+    }else{
+      localStorage.setItem('citas', JSON.stringify([]));
+    }
+  },[citas])
+
+  ///// Funciones
 
   const crearCita = cita =>{
       setCitas([
